@@ -1,6 +1,15 @@
-self.options = {
- "domain": "5gvci.com",
- "zoneId": 10792245
-}
-self.lary = ""
-importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')
+// Service Worker - AIVANTAGE Resources
+// No ad code - clean for Paddle approval
+
+self.addEventListener('install', (event) => {
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', (event) => {
+    // Standard fetch handling - no ad injection
+    event.respondWith(fetch(event.request));
+});
